@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp & Email Messenger</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📱 WhatsApp & Email Messenger</h1>
+            <p class="subtitle">Send messages via WhatsApp and Email</p>
+        </header>
+
+        <div class="status-bar">
+            <div class="status-item">
+                <span class="status-label">Server:</span>
+                <span id="serverStatus" class="status-value">Checking...</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Uptime:</span>
+                <span id="serverUptime" class="status-value">-</span>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" data-tab="whatsapp">WhatsApp</button>
+            <button class="tab-button" data-tab="email">Email</button>
+            <button class="tab-button" data-tab="health">System Health</button>
+        </div>
+
+        <!-- WhatsApp Tab -->
+        <div id="whatsapp-tab" class="tab-content active">
+            <div class="card">
+                <h2>WhatsApp Connection</h2>
+                <div class="form-group">
+                    <label for="sessionId">Session ID:</label>
+                    <input type="text" id="sessionId" placeholder="e.g., my-session-1" value="default-session0101">
+                </div>
+                <div class="button-group">
+                    <button onclick="connectWhatsApp()" class="btn btn-primary">Connect</button>
+                    <button onclick="checkWhatsAppStatus()" class="btn btn-secondary">Check Status</button>
+                    <button onclick="disconnectWhatsApp()" class="btn btn-danger">Disconnect</button>
+                </div>
+                <div id="whatsapp-status" class="status-display"></div>
+                <div id="qr-code-container" class="qr-container"></div>
+            </div>
+
+            <div class="card">
+                <h2>Send WhatsApp Message</h2>
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number (with country code, no +):</label>
+                    <input type="text" id="phoneNumber" placeholder="1234567890">
+                </div>
+                <div class="form-group">
+                    <label for="whatsappMessage">Message:</label>
+                    <textarea id="whatsappMessage" rows="4" placeholder="Enter your message here..."></textarea>
+                </div>
+                <button onclick="sendWhatsAppMessage()" class="btn btn-primary">Send Message</button>
+                <div id="whatsapp-result" class="result-display"></div>
+            </div>
+        </div>
+
+        <!-- Email Tab -->
+        <div id="email-tab" class="tab-content">
+            <div class="card">
+                <h2>Send Email</h2>
+                <div class="form-group">
+                    <label for="emailTo">To:</label>
+                    <input type="email" id="emailTo" placeholder="recipient@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="emailSubject">Subject:</label>
+                    <input type="text" id="emailSubject" placeholder="Email subject">
+                </div>
+                <div class="form-group">
+                    <label for="emailText">Message (Text):</label>
+                    <textarea id="emailText" rows="4" placeholder="Plain text message"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="emailHtml">Message (HTML) - Optional:</label>
+                    <textarea id="emailHtml" rows="4" placeholder="<h1>HTML message</h1>"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="emailCc">CC - Optional:</label>
+                    <input type="email" id="emailCc" placeholder="cc@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="emailBcc">BCC - Optional:</label>
+                    <input type="email" id="emailBcc" placeholder="bcc@example.com">
+                </div>
+                <div class="button-group">
+                    <button onclick="sendEmail()" class="btn btn-primary">Send Email</button>
+                    <button onclick="sendTestEmail()" class="btn btn-secondary">Send Test Email</button>
+                </div>
+                <div id="email-result" class="result-display"></div>
+            </div>
+        </div>
+
+        <!-- Health Tab -->
+        <div id="health-tab" class="tab-content">
+            <div class="card">
+                <h2>System Health</h2>
+                <button onclick="checkHealth()" class="btn btn-primary">Refresh Health Status</button>
+                <pre id="health-data" class="health-display"></pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
